@@ -1,3 +1,5 @@
-var app = require("./app");
+var appView = require("./views/appView");
 
-app.start("#container");
+var app = new appView(document.getElementById("container"));
+
+app.render();

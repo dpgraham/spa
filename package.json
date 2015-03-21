@@ -16,6 +16,8 @@
     "gulp-rimraf": "^0.1.1",
     "gulp-shell": "^0.4.0",
     "gulp-util": "^3.0.4",
+    "handlebars": "^3.0.0",
+    "hbsfy": "^2.2.1",
     "http": "0.0.0",
     "minimist": "^1.1.1",
     "mocha": "^2.2.1",
