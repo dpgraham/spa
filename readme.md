@@ -1,3 +1,11 @@
+INSTRUCTIONS
+================
+-PhantomJS must be installed globally (http://phantomjs.org/download.html)
+-NodeJS, NPM must be installed
+-'gulp' must be installed (npm install -g gulp)
+-Run 'npm install'
+-To build the project run the default 'gulp'
+
 PLAN
 =============
 Step 1: Have the build system ready including unit testing

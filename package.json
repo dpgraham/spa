@@ -15,6 +15,7 @@
     "mochify": "^2.6.1",
     "require-dir": "^0.1.0",
     "requiredir": "^1.0.6",
+    "simple-ajax": "^1.0.1",
     "uglifyify": "^3.0.1",
     "vinyl-source-stream": "^1.1.0"
   },
