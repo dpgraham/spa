@@ -22,12 +22,17 @@ var BaseModel = function(data){
  * Root URL of the BestBuy API
  * @type {string}
  */
-BaseModel.prototype.rootUrl = "http://www.bestbuy.ca/api/v2";
+BaseModel.prototype.rootUrl = "http://localhost:3000/api/";
 
 /**
  * URL of the endpoint
  */
 BaseModel.prototype.url;
+
+
+BaseModel.prototype._getFullURL = function(){
+    return this.rootUrl + this.url;
+};
 
 /**
  * Gets up to date data using Ajax; can be overridden in unit tests to allow mock data
@@ -37,10 +42,16 @@ BaseModel.prototype.url;
  */
 BaseModel.prototype.sync = function(url, doneCb, errCb){
     // Perform an Ajax request
-    var ajax = new Ajax(this.rootUrl + this.url);
+
+    //var ajax = new Ajax(this.rootUrl + this.url);
+    var ajax = new Ajax(this._getFullURL());
     var ctx = this;
     ajax.on('success', function(evt){
-        doneCb(evt);
+        var resp = {
+            data: evt.target.responseText,
+            response: evt
+        };
+        doneCb(resp);
     });
 
     ajax.on('error', function(evt){
