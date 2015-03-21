@@ -7,11 +7,15 @@ var Ajax = require("simple-ajax");
  *
  * Similar to the Backbone Model
  *
+ * @param data {Object} Initial values of the data. Optional.
+ *
  * @constructor
  */
-var BaseModel = function(){
+var BaseModel = function(data){
     this.onChange = new CustomEvent();
     this.onError = new CustomEvent();
+    this.data = data || {};
+    this.dataJSON = JSON.stringify(this.data);
 };
 
 /**

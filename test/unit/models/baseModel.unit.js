@@ -88,4 +88,34 @@ describe('test the change callback', function(){
         });
     });
 
+    describe('test with initial data that it doesnt fire change event if it doesnt change', function(){
+
+        // Override sync. Always returns same value
+        var initData = {
+            val1: 'hello',
+            val2: 'world'
+        };
+
+        var model = new BaseModel(initData);
+        model.sync = function(url, doneCb){
+            setTimeout(function(){
+                doneCb({
+                    data: '{"val1":"hello","val2":"world"}'
+                })
+            }, 1);
+        };
+
+        it("should not fire change event", function(done){
+            model.onChange.subscribe(function(ctx){
+                console.log("Error #1");
+                assert.equal(ctx, ERR_MESSAGE);
+                done();
+            });
+            model.fetch();
+            setTimeout(done, 20);
+        });
+    });
+
+
+
 });
