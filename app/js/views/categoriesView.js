@@ -1,5 +1,5 @@
 var baseView = require("./baseView");
-var template = require("../templates/categories/categories.html");
+var template = require("../templates/categories.html");
 var Categories = require("../models/categories");
 var ProductsView = require("../views/productsView");
 
