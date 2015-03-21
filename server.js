@@ -4,6 +4,7 @@ var request = require('request');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var argv = require('minimist')(process.argv.slice(2));
+var queryString = require('querystring');
 
 app.use(bodyParser.json());
 
@@ -12,14 +13,19 @@ if(!argv.prod) {
     app.use(cors());
 }
 
+var toQueryString = function(queryObj){
+    var keys = queryObj.keys;
+}
+
 /**
  * Proxy through API requests to the Best Buy backend
  */
 app.get(/^\/api\/(.+)/, function(req, res){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    console.log("Proxying through: " + "http://www.bestbuy.ca/api/v2/json/" + req.params[0]);
-    request("http://www.bestbuy.ca/api/v2/json/" + req.params[0], function(error, response, body){
+    var url = "http://www.bestbuy.ca/api/v2/json/" + req.params[0] + "?" + queryString.stringify(req.query);
+    console.log("Proxying through: " + url);
+    request(url, function(error, response, body){
         if(!error && response.statusCode === 200) {
             res.json(JSON.parse(body));
         } else {

@@ -3,7 +3,7 @@ var Product = require("./product");
 
 var Products = function(id){
     this.id = id;
-    this.url = "search?categoryid={" + this.id + "}";
+    this.url = "search?categoryid=" + this.id;
 };
 
 Products.prototype = new BaseModel();

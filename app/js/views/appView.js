@@ -1,13 +1,14 @@
 var baseView = require("./baseView");
 var template = require("../templates/app.html");
+var categoriesView = require("./categoriesView");
 
 var AppView = function(el){
-    // Temporarily assign the model as an inline object
-    this.model = {
-        data: []
-    }
     this.template = template;
     this.el = el;
+    this.render();
+    var sidebarEl = document.getElementById("sidebar");
+
+    this.categoriesView = new categoriesView(sidebarEl);
 };
 
 AppView.prototype = new baseView();

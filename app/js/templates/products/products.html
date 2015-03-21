@@ -1,5 +1,9 @@
+{{#if products}}
 <ul>
-    <li>Product one</li>
-    <li>Product two</li>
-    <li>Product three</li>
+    {{#each products}}
+    <li><a href="#" data-id="{{this.id}}">{{this.name}}</a></li>
+    {{/each}}
 </ul>
+{{else}}
+<div>Loading...</div>
+{{/if}}
