@@ -18,7 +18,6 @@ describe('test the change callback', function(){
 
         it("should call change event after two consecutive fetches", function(done){
             model.onChange.subscribe(function(ctx){
-                console.log("FETCH #2");
                 assert.equal(ctx, model);
                 assert.equal(ctx.data, 1);
             });
@@ -27,7 +26,6 @@ describe('test the change callback', function(){
 
             setTimeout(function(){
                 model.onChange.subscribe(function(ctx){
-                    console.log("FETCH #3");
                     assert.equal(ctx.data, 2);
                     done();
                 });
@@ -80,7 +78,6 @@ describe('test the change callback', function(){
 
         it("should fire error event", function(done){
             model.onError.subscribe(function(ctx){
-                console.log("Error #1");
                 assert.equal(ctx, ERR_MESSAGE);
                 done();
             });
@@ -107,7 +104,6 @@ describe('test the change callback', function(){
 
         it("should not fire change event", function(done){
             model.onChange.subscribe(function(ctx){
-                console.log("Error #1");
                 assert.equal(ctx, ERR_MESSAGE);
                 done();
             });
