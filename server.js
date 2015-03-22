@@ -58,7 +58,7 @@ app.use('/client', express.static(__dirname + '/dist'));
 app.use(express.static(__dirname + '/dist'));
 
 
-var port = argv.prod ? 80 : (argv.port || 3000);
+var port = process.env.PORT || argv.port || 3000;
 console.log("Starting server at port: " + port);
 var server = app.listen(port);
 
