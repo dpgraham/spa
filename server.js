@@ -68,9 +68,5 @@ module.exports = {
     close: function(){
         console.log("Closing server at port: " + port);
         server.close();
-    },
-
-    enableCORS: function(){
-        app.use(cors());
     }
 }
