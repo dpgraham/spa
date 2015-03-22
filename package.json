@@ -4,6 +4,9 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {},
+  "engine": {
+    "node": "0.10.29"
+  },
   "devDependencies": {
     "assert": "^1.3.0",
     "body-parser": "^1.12.2",
@@ -31,7 +34,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "start": "mochify --watch",
+    "start": "node server.js",
     "phantom": "mochify",
     "wd": "mochify --wd",
     "cover": "mochify --cover",
