@@ -21,8 +21,8 @@ var toQueryString = function(queryObj){
  * Proxy through API requests to the Best Buy backend
  */
 app.get(/^\/api\/(.+)/, function(req, res){
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    //res.header("Access-Control-Allow-Origin", "*");
+    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var url = "http://www.bestbuy.ca/api/v2/json/" + req.params[0] + "?" + queryString.stringify(req.query);
     console.log("Proxying through: " + url);
     request(url, function(error, response, body){
@@ -33,6 +33,23 @@ app.get(/^\/api\/(.+)/, function(req, res){
         }
     });
 });
+
+/**
+ * Proxy through API requests to the Best Buy backend
+ */
+app.get(/^\/multimedia\/(.+)/, function(req, res){
+    var url = "http://www.bestbuy.ca/multimedia/" + req.params[0];
+    console.log("Proxying through: " + url);
+    request(url, function(error, response, body){
+        if(!error && response.statusCode === 200) {
+            res.send(response);
+        } else {
+            res.status(response.statusCode).send(response.responseText);
+        }
+    });
+});
+
+
 
 /**
  * Proxy through client asset requests to static assets

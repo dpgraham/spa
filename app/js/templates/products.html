@@ -1,9 +1,10 @@
 {{#if products}}
 <ul>
     {{#each products}}
-    <li><a href="#" data-id="{{this.id}}">{{this.name}}</a></li>
+    <li><a href="#" data-id="{{this.sku}}">{{this.name}}</a></li>
     {{/each}}
 </ul>
 {{else}}
 <div>Loading...</div>
 {{/if}}
+<div class="productDetails"></div>

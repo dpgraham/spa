@@ -14,12 +14,11 @@ var CategoriesView = function(el){
     this.model = new Categories();
     var ctx = this;
     this.model.onChange.subscribe(function(){
-        console.log("Data updated");
         ctx.render();
     });
     this.model.fetch();
 
-    // Create a 'ProductsView' which shows the products associated with this category
+    // Create a 'ProductDetailsView' which shows the products associated with this category
     this.productsView = new ProductsView(document.getElementById("main_content"));
 };
 
@@ -52,6 +51,7 @@ CategoriesView.prototype.render = function(){
         // Bind to the click event for all of these items
         for (var i = 0; i < categoryEls.length; i++) {
             categoryEls[i].addEventListener("click", function (evt) {
+                evt.preventDefault();
                 ctx.handleSelectCategory(evt.target);
             });
         }

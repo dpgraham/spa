@@ -1,0 +1,18 @@
+{{#if name}}
+<div class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{name}}</h4>
+            </div>
+            <div class="modal-body">
+                <img src="{{brandThumbnailImage}}" alt="Picture of {{name}}"/>
+                <p>{{shortDescription}}&hellip;</p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{{else}}
+<div>Loading...</div>
+{{/if}}
