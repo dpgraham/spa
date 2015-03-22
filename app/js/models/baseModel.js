@@ -22,7 +22,7 @@ var BaseModel = function(data){
  * Root URL of the BestBuy API
  * @type {string}
  */
-BaseModel.prototype.rootUrl = "http://localhost:3000/api/";
+BaseModel.prototype.rootUrl = "/api/";
 
 /**
  * URL of the endpoint
