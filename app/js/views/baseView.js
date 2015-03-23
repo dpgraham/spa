@@ -1,7 +1,8 @@
+var CustomEvent = require("../utils/customEvent");
+
 var BaseView = function(){
 
 };
-
 
 BaseView.prototype.render = function(ctx){
     ctx = ctx || this;

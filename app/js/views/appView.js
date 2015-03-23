@@ -9,6 +9,7 @@ var AppView = function(el){
     this.render();
     var sidebarEl = document.getElementById("sidebar");
 
+    // If there's a network error, show the error message
     BaseModel.onError.subscribe(function(){
         document.getElementById("error_message").className = "alert alert-danger";
     });

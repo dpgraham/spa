@@ -2,6 +2,7 @@ var baseView = require("./baseView");
 var template = require("../templates/categories.html");
 var Categories = require("../models/categories");
 var ProductsView = require("../views/productsView");
+var CustomEvent = require("../utils/customEvent");
 
 var CategoriesView = function(el){
 
@@ -10,11 +11,17 @@ var CategoriesView = function(el){
     this.el = el;
     this.render();
 
+    // Event that is fired when the component is done rendering... used in testing
+    this.onReady = new CustomEvent();
+
     // Fetch the categories. When the categories arrive this will show a list of items
+    console.log("Fetching categories");
     this.model = new Categories();
     var ctx = this;
     this.model.onChange.subscribe(function(){
         ctx.render();
+        if(ctx.model.data.subCategories)
+            ctx.onReady.trigger(ctx);
     });
     this.model.fetch();
 
@@ -23,6 +30,7 @@ var CategoriesView = function(el){
 };
 
 CategoriesView.prototype = new baseView();
+
 
 CategoriesView.prototype.handleSelectCategory = function(el){
     // Unselect the previously selected category
@@ -37,9 +45,9 @@ CategoriesView.prototype.handleSelectCategory = function(el){
     // Update the products view with a new category
     var dataIdAttr = el.attributes["data-id"];
     if(dataIdAttr){
-        this.productsView.selectCategory(dataIdAttr.value);
+        return this.productsView.selectCategory(dataIdAttr.value);
     }
-}
+};
 
 CategoriesView.prototype.render = function(){
     baseView.prototype.render(this);

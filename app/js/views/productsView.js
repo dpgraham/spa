@@ -2,12 +2,16 @@ var baseView = require("./baseView");
 var template = require("../templates/products.html");
 var ProductsModel = require("../models/products");
 var ProductDetailsView = require("./productDetailsView");
+var CustomEvent = require("../utils/customEvent");
 
 var ProductsView = function(el){
     // Render the view
     this.template = template;
     this.el = el;
     this.render();
+
+    // Custom event that fires when it's ready
+    this.onReady = new CustomEvent();
 };
 
 ProductsView.prototype = new baseView();
@@ -22,11 +26,18 @@ ProductsView.prototype.selectCategory = function(categoryId){
     var ctx = this;
     this.model.onChange.subscribe(function(){
         ctx.render();
+        if(ctx.model.data.products)
+            ctx.onReady.trigger(this);
     });
     this.model.fetch();
     return this.model;
 };
 
+/**
+ * Callback when user selects a product from the list
+ * @param el
+ * @returns {ProductDetailsView}
+ */
 ProductsView.prototype.handleSelectProduct = function(el){
     // Unselect the previously selected category
     if(this.selectedEl){

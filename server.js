@@ -24,7 +24,6 @@ app.get(/^\/api\/(.+)/, function(req, res){
     //res.header("Access-Control-Allow-Origin", "*");
     //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var url = "http://www.bestbuy.ca/api/v2/json/" + req.params[0] + "?" + queryString.stringify(req.query);
-    console.log("Proxying through: " + url);
     request(url, function(error, response, body){
         if(!error && response.statusCode === 200) {
             res.json(JSON.parse(body));
@@ -39,7 +38,6 @@ app.get(/^\/api\/(.+)/, function(req, res){
  */
 app.get(/^\/multimedia\/(.+)/, function(req, res){
     var url = "http://www.bestbuy.ca/multimedia/" + req.params[0];
-    console.log("Proxying through: " + url);
     request(url, function(error, response, body){
         if(!error && response.statusCode === 200) {
             res.send(response);
