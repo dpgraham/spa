@@ -37,14 +37,7 @@ app.get(/^\/api\/(.+)/, function(req, res){
  * Proxy through API requests to the Best Buy backend
  */
 app.get(/^\/multimedia\/(.+)/, function(req, res){
-    var url = "http://www.bestbuy.ca/multimedia/" + req.params[0];
-    request(url, function(error, response, body){
-        if(!error && response.statusCode === 200) {
-            res.send(response);
-        } else {
-            res.status(response.statusCode).send(response.responseText);
-        }
-    });
+    res.redirect("http://www.bestbuy.ca/multimedia/" + req.params[0]);
 });
 
 /**
