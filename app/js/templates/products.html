@@ -1,7 +1,7 @@
 {{#if products}}
 <ul>
     {{#each products}}
-    <li><a href="#" data-id="{{this.sku}}">{{this.name}}</a></li>
+    <div class="col-xs-6 col-sm-4"><a href="#" data-id="{{this.sku}}">{{this.name}}</a></div>
     {{/each}}
 </ul>
 {{else}}

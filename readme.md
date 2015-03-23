@@ -10,9 +10,13 @@ INSTRUCTIONS
     -PhantomJS must be installed globally (http://phantomjs.org/download.html)
     -Run 'gulp test' to run all of the unit tests and functional tests
 
-PLAN
-=============
-Step 1: Have the build system ready including unit testing
-Step 2: Implement all of the Javascript code with unit tests; no front end
-Step 3: Implement the templates and integrate it with the app code
-Step 4: Write some functional/integration tests
+COMMENTS
+================
+-Uses a similar implementation to Backbone except that it's read only so no need for putting, posting, deleting...
+-Proxies the rest API through a Node server that is run by calling 'node server'
+-Is hosted on Heroku. Deploys by pushing the branch to 'heroku master' and viewed at 'http://polar-shelf-5424.herokuapp.com/client/'
+-Uses model view template architecture
+    -Model:    Models the data that synchronizes with an endpoint URL
+    -View:     Controls the UI logic for a model
+    -Template: HTML templates for the model
+-If there was no restriction on JS libraries I would have used FB React or Angular instead of using templates

@@ -19,4 +19,12 @@ var ProductDetailsView = function(el, id){
 
 ProductDetailsView.prototype = new baseView();
 
+ProductDetailsView.prototype.render = function(){
+    baseView.prototype.render(this);
+    var ctx = this;
+    this.el.getElementsByClassName("close")[0].addEventListener("click", function(){
+        ctx.el.parentNode.removeChild(ctx.el);
+    });
+};
+
 module.exports = ProductDetailsView;

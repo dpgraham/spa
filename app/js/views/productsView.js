@@ -24,7 +24,7 @@ ProductsView.prototype.selectCategory = function(categoryId){
         ctx.render();
     });
     this.model.fetch();
-    return model;
+    return this.model;
 };
 
 ProductsView.prototype.handleSelectProduct = function(el){
@@ -40,7 +40,9 @@ ProductsView.prototype.handleSelectProduct = function(el){
     // Update the products view with a new category
     var dataIdAttr = el.attributes["data-id"];
 
-    return new ProductDetailsView(this.el.getElementsByClassName("productDetails")[0], dataIdAttr.value);
+    var modalContainer = document.createElement('div');
+    document.body.appendChild(modalContainer);
+    return new ProductDetailsView(modalContainer, dataIdAttr.value);
 };
 
 ProductsView.prototype.render = function(){
@@ -57,9 +59,6 @@ ProductsView.prototype.render = function(){
                 ctx.handleSelectProduct(evt.target);
             });
         }
-
-        // Select the first item, by default
-        this.handleSelectProduct(productEls[0]);
     }
 };
 
