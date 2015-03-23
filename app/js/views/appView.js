@@ -4,6 +4,7 @@ var categoriesView = require("./categoriesView");
 var BaseModel = require("../models/baseModel");
 
 var AppView = function(el){
+    baseView.call(this);
     this.template = template;
     this.el = el;
     this.render();

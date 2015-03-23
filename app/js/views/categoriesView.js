@@ -5,6 +5,7 @@ var ProductsView = require("../views/productsView");
 var CustomEvent = require("../utils/customEvent");
 
 var CategoriesView = function(el){
+    baseView.call(this);
 
     // Render without any data... this will show a loading screen
     this.template = template;
@@ -15,7 +16,6 @@ var CategoriesView = function(el){
     this.onReady = new CustomEvent();
 
     // Fetch the categories. When the categories arrive this will show a list of items
-    console.log("Fetching categories");
     this.model = new Categories();
     var ctx = this;
     this.model.onChange.subscribe(function(){

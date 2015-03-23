@@ -5,6 +5,8 @@ var ProductDetailsView = require("./productDetailsView");
 var CustomEvent = require("../utils/customEvent");
 
 var ProductsView = function(el){
+
+    baseView.call(this);
     // Render the view
     this.template = template;
     this.el = el;
