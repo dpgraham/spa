@@ -27,7 +27,9 @@
     "simple-ajax": "^1.0.1",
     "through2": "^0.6.3",
     "uglifyify": "^3.0.1",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "gulp-uglify": "^1.1.0",
+    "minifyify": "^6.3.2"
   },
   "engine": {
     "node": "0.10.29"
@@ -40,8 +42,4 @@
     "test": "npm run phantom && npm run wd && npm run cover",
     "postinstall": "npm install && gulp default --minify"
   },
-  "devDependencies": {
-    "gulp-uglify": "^1.1.0",
-    "minifyify": "^6.3.2"
-  }
 }

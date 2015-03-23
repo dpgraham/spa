@@ -24,6 +24,7 @@ ProductsView.prototype.selectCategory = function(categoryId){
         ctx.render();
     });
     this.model.fetch();
+    return model;
 };
 
 ProductsView.prototype.handleSelectProduct = function(el){
@@ -39,7 +40,7 @@ ProductsView.prototype.handleSelectProduct = function(el){
     // Update the products view with a new category
     var dataIdAttr = el.attributes["data-id"];
 
-    var productDetailsView = new ProductDetailsView(this.el.getElementsByClassName("productDetails")[0], dataIdAttr.value);
+    return new ProductDetailsView(this.el.getElementsByClassName("productDetails")[0], dataIdAttr.value);
 };
 
 ProductsView.prototype.render = function(){

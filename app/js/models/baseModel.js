@@ -1,5 +1,4 @@
 var CustomEvent = require("../utils/customEvent");
-var Indicator = require("../utils/indicator");
 var Ajax = require("simple-ajax");
 
 /**
