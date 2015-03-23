@@ -3,6 +3,11 @@ var template = require("../templates/app.html");
 var categoriesView = require("./categoriesView");
 var BaseModel = require("../models/baseModel");
 
+/**
+ * The main view for the entire application
+ * @param el {HTMLElement} The top container node
+ * @constructor
+ */
 var AppView = function(el){
     baseView.call(this);
     this.template = template;

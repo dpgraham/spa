@@ -5,6 +5,7 @@ var CustomEvent = require("../utils/customEvent");
 
 var ProductDetailsView = function(el, id){
     baseView.call(this);
+
     // Render the view
     this.template = template;
     this.el = el;
@@ -13,7 +14,7 @@ var ProductDetailsView = function(el, id){
     // Callback when done rendering
     this.onReady = new CustomEvent();
 
-    // Get the productDetails model
+    // Get the productDetails model and render the data
     this.model = new ProductDetailsModel(id);
     var ctx = this;
     this.model.onChange.subscribe(function(){
@@ -25,6 +26,9 @@ var ProductDetailsView = function(el, id){
 
 ProductDetailsView.prototype = new baseView();
 
+/**
+ * Close this view down
+ */
 ProductDetailsView.prototype.remove = function(){
     this.el.parentNode.removeChild(this.el);
 };

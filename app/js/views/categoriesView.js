@@ -31,7 +31,11 @@ var CategoriesView = function(el){
 
 CategoriesView.prototype = new baseView();
 
-
+/**
+ * Callback when user selects a category
+ * @param el {HTMLElement} The element that was clicked on
+ * @returns {null|*|ProductsView.model|*}
+ */
 CategoriesView.prototype.handleSelectCategory = function(el){
     // Unselect the previously selected category
     if(this.selectedEl){

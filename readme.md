@@ -13,6 +13,7 @@ INSTRUCTIONS
 COMMENTS
 ================
 - Uses a similar implementation to Backbone except that it's read only so no need for putting, posting, deleting...
+- Has base models and view classes that everything extends from
 - Proxies the rest API through a Node server that is run by calling 'node server'
 - Is hosted on Heroku. Deploys by pushing the branch to 'heroku master' and viewed at 'http://polar- shelf- 5424.herokuapp.com/client/'
 - Uses model view template architecture

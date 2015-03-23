@@ -18,6 +18,11 @@ var ProductsView = function(el){
 
 ProductsView.prototype = new baseView();
 
+/**
+ * Select a category of products
+ * @param categoryId {number}
+ * @returns {null|*|ProductsView.model}
+ */
 ProductsView.prototype.selectCategory = function(categoryId){
     // Destroy the current model and re-render so that it shows the loading indicator
     this.model = null;
@@ -59,13 +64,14 @@ ProductsView.prototype.handleSelectProduct = function(el){
 };
 
 ProductsView.prototype.render = function(){
+
+    // Call the base render method
     baseView.prototype.render(this);
 
+    // Bind to the click event for all of the anchor tags
     var productEls = this.el.getElementsByTagName("a");
     var ctx = this;
     if(productEls.length > 0) {
-
-        // Bind to the click event for all of these items
         for (var i = 0; i < productEls.length; i++) {
             productEls[i].addEventListener("click", function (evt) {
                 evt.preventDefault();
