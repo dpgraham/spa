@@ -8,10 +8,13 @@ var source = require('vinyl-source-stream');
 var minifyify = require('minifyify');
 
 gulp.task("js", function(){
-    var out = browserify('./app/js/main.js', {debug: !gulpUtil.env.minify});
+    var out = browserify('./app/js/main.js', {debug: gulpUtil.env.debug});
 
     if(gulpUtil.env.minify){
-        out.plugin("minifyify", {map: false});
+        out.plugin("minifyify", {
+            map: gulpUtil.env.debug,
+            output: "bundle.map.js"
+        });
     }
 
     out.transform(hbsfy);
