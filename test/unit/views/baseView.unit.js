@@ -1,7 +1,7 @@
 var assert = require("assert");
 var BaseView = require("../../../app/js/views/baseView");
 
-describe('testing the view logic', function(){
+describe('when creating a view element and calling render', function(){
 
     it("should render the element based on the data and then when the data is changed, render a new element", function(){
 

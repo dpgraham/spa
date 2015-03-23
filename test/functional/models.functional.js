@@ -2,9 +2,9 @@ var CategoriesModel = require("../../app/js/models/categories");
 var BaseModel = require("../../app/js/models/baseModel");
 var assert = require("assert");
 
-describe('test the model sync method', function(){
+describe('when you call the sync method on an endpoint', function(){
 
-    it("should fire the done callback when the endpoint is valid", function(done){
+    it("should fire the done callback if the endpoint is valid", function(done){
         BaseModel.prototype.sync("http://localhost:3000/api/search?categoryid=20001", function(){ done() }, function(){
             assert.equal(true, false, "Should not fire error callback");
         });
@@ -18,7 +18,7 @@ describe('test the model sync method', function(){
     });
 });
 
-describe("Hitting several endpoints", function(){
+describe("Integration tests for the models", function(){
 
     it("should get the categories data, the product collection for a category and then details for the a product", function(done){
         var categoriesModel = new CategoriesModel();

@@ -1,8 +1,8 @@
 var assert = require("assert"),
     customEvent = require("../../../app/js/utils/customEvent");
 
-describe('subscribe', function(){
-    describe('one callback', function(){
+describe('when you subscribe to an event', function(){
+    describe('once', function(){
         it("should fire one callback when you trigger an event and have the correct arguments", function(done){
             var event = new customEvent();
             event.subscribe(function(){
@@ -17,8 +17,8 @@ describe('subscribe', function(){
         });
     });
 
-    describe('multiple callbacks', function(){
-        it("should fire multiple callbacks when you trigger an event and have the correct arguments", function(done){
+    describe('multiple times', function(){
+        it("should fire multiple callbacks when you trigger an event", function(done){
             var event = new customEvent();
             var callbacks = 0;
 
@@ -50,10 +50,10 @@ describe('subscribe', function(){
     });
 });
 
-describe('test the unsubscribe method by', function(){
+describe('when you unsubscribe an event', function(){
 
-    describe('subscribing and unsubscribing one callback', function(){
-        it('should not fire the callback when triggering', function(){
+    describe('if just one callback was subscribed', function(){
+        it('should not fire that callback', function(){
             var event = new customEvent();
             var cb = function(){
                 assert.equal(true, false, "Should not reach this function, should be unsubscribed");
@@ -64,7 +64,7 @@ describe('test the unsubscribe method by', function(){
         });
     });
 
-    describe('subscribing multiple callbacks and then unsubscribing all of them', function(){
+    describe('and there were multiple callbacks subscribed to it', function(){
         it('should not fire any of the callbacks when triggering', function(){
             var event = new customEvent();
             var cb1 = function(){
@@ -80,8 +80,8 @@ describe('test the unsubscribe method by', function(){
         });
     });
 
-    describe('subscribing multiple callbacks and then unsubscribing only one of them', function(){
-        it('should only fire the one callback', function(done){
+    describe('for one callback but not another', function(){
+        it('should still fire the one callback', function(done){
             var event = new customEvent();
             var cb1 = function(){
                 assert.equal(true, false, "Should not reach this function, should be unsubscribed");

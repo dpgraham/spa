@@ -1,9 +1,9 @@
 var assert = require("assert");
 var BaseModel = require("../../../app/js/models/baseModel");
 
-describe('test the change callback', function(){
+describe('when you create a new model', function(){
 
-    describe('calling fetch on the base model', function(){
+    describe('if you call the fetch event twice and the model\'s data changes', function(){
 
         // Override sync. Always returns a unique number
         var model = new BaseModel();
@@ -16,7 +16,7 @@ describe('test the change callback', function(){
             }, 1);
         };
 
-        it("should call change event after two consecutive fetches", function(done){
+        it("should fire the change callback twice", function(done){
             model.onChange.subscribe(function(ctx){
                 assert.equal(ctx, model);
                 assert.equal(ctx.data, 1);
@@ -35,7 +35,7 @@ describe('test the change callback', function(){
 
     });
 
-    describe('calling fetch when model doesnt change doesnt cause change event', function(){
+    describe('if you call the fetch event twice but the data doesn\'t change', function(){
 
         // Override sync. Always returns same value
         var model = new BaseModel();
@@ -65,7 +65,7 @@ describe('test the change callback', function(){
         });
     });
 
-    describe('calling fetch throws error', function(){
+    describe('if you call a fetch event and it throws an error', function(){
 
         // Override sync to always fire an error
         var model = new BaseModel();
@@ -76,7 +76,7 @@ describe('test the change callback', function(){
             }, 1);
         };
 
-        it("should fire error event", function(done){
+        it("should fire error event for that object and the global error event", function(done){
             var i = 0;
             model.onError.subscribe(function(ctx){
                 assert.equal(ctx, ERR_MESSAGE);
@@ -90,7 +90,7 @@ describe('test the change callback', function(){
         });
     });
 
-    describe('test with initial data that it does\'nt fire change event if the data doesnt change', function(){
+    describe('if you initialize the model with data and the fetch event doesn\'t change the data', function(){
 
         // Override sync. Always returns same value
         var initData = {

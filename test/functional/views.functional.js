@@ -5,7 +5,7 @@ var productsView = require("../../app/js/views/productsView");
 var assert = require("assert");
 
 
-describe('test the UI', function(){
+describe('Integration tests for the views', function(){
 
     var categoryId, productId;
 
