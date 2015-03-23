@@ -77,9 +77,14 @@ describe('test the change callback', function(){
         };
 
         it("should fire error event", function(done){
+            var i = 0;
             model.onError.subscribe(function(ctx){
                 assert.equal(ctx, ERR_MESSAGE);
-                done();
+                if(++i == 2) done();
+            });
+            BaseModel.onError.subscribe(function(ctx){
+                assert.equal(ctx, ERR_MESSAGE);
+                if(++i == 2) done();
             });
             model.fetch();
         });

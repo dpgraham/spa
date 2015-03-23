@@ -56,7 +56,9 @@ BaseModel.prototype.sync = function(url, doneCb, errCb){
     });
 
     ajax.send();
-}
+};
+
+BaseModel.onError = new CustomEvent();
 
 /**
  * Fetch the contents of that endpoint. Fires 'onChange' if the contents come back different.
@@ -72,6 +74,7 @@ BaseModel.prototype.fetch = function(){
         }
     }, function(evt){
         ctx.onError.trigger(evt);
+        BaseModel.onError.trigger(evt);
     });
 };
 
