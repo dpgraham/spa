@@ -8,7 +8,8 @@ var source = require('vinyl-source-stream');
 var minifyify = require('minifyify');
 
 gulp.task("js", function(){
-    var out = browserify('./app/js/main.js', {debug: gulpUtil.env.debug});
+    var out = browserify('./app/js/main.js', {debug: gulpUtil.env.debug})
+        .require("./app/js/config/config", {expose: 'config'});
 
     if(gulpUtil.env.minify){
         out.plugin("minifyify", {

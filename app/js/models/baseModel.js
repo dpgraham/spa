@@ -1,5 +1,6 @@
 var CustomEvent = require("../utils/customEvent");
 var Ajax = require("simple-ajax");
+var Config = require("config");
 
 /**
  * Javascript model that corresponds with an API endpoint. Inherited by all other models.
@@ -10,7 +11,7 @@ var Ajax = require("simple-ajax");
  *
  * @constructor
  */
-var BaseModel = function(data){
+function BaseModel(data){
     this.onChange = new CustomEvent();
     this.onError = new CustomEvent();
     this.data = data || {};
@@ -21,7 +22,7 @@ var BaseModel = function(data){
  * Root URL of the BestBuy API
  * @type {string}
  */
-BaseModel.prototype.rootUrl = "/api/";
+BaseModel.prototype.rootUrl = Config.rootUrl;
 
 /**
  * URL of the endpoint

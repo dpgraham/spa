@@ -1,11 +1,11 @@
 var BaseModel = require("./baseModel");
 var subCategory = require("./subCategory");
 
-var Categories = function(){
-
+function Categories(){
+    BaseModel.call(this);
 };
 
-Categories.prototype = new BaseModel();
+Categories.prototype = Object.create(BaseModel.prototype);
 
 Categories.prototype.url = "Category/departments";
 

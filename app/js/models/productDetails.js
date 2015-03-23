@@ -1,10 +1,11 @@
 var BaseModel = require("./baseModel");
 
-var ProductDetails = function(id){
+function ProductDetails(id){
+    BaseModel.call(this);
     this.id = id;
     this.url = "product/" + this.id;
 };
 
-ProductDetails.prototype = new BaseModel();
+ProductDetails.prototype = Object.create(BaseModel.prototype);
 
 module.exports = ProductDetails;
