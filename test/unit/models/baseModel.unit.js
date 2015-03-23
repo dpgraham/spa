@@ -85,7 +85,7 @@ describe('test the change callback', function(){
         });
     });
 
-    describe('test with initial data that it doesnt fire change event if it doesnt change', function(){
+    describe('test with initial data that it does\'nt fire change event if the data doesnt change', function(){
 
         // Override sync. Always returns same value
         var initData = {

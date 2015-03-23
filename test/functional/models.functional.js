@@ -1,10 +1,28 @@
 var CategoriesModel = require("../../app/js/models/categories");
+var BaseModel = require("../../app/js/models/baseModel");
 var assert = require("assert");
+
+describe('test the model sync method', function(){
+
+    it("should fire the done callback when the endpoint is valid", function(done){
+        BaseModel.prototype.sync("http://localhost:3000/api/search?categoryid=20001", function(){ done() }, function(){
+            assert.equal(true, false, "Should not fire error callback");
+        });
+    });
+
+    it("should fire the error callback when the endpoint is not valid", function(done){
+        BaseModel.prototype.sync("http://localhost:3000/api/not_a_valid_endpoint", function(){
+            // Should not reach this
+            assert.equal(true, false, "Should not fire done callback");
+        }, function(){ done() });
+    });
+});
 
 describe("Hitting several endpoints", function(){
 
-    it("Should fetch data from the categories API endpoint and trigger a change event", function(done){
+    it("should get the categories data, the product collection for a category and then details for the a product", function(done){
         var categoriesModel = new CategoriesModel();
+        categoriesModel.rootUrl = "http://localhost:3000/api/";
         categoriesModel.onChange.subscribe(function(ctx){
             // Do a sanity check to confirm that it's getting the proper JSON
             assert.equal(ctx.data.Brand, "BestBuyCanada");
@@ -17,6 +35,8 @@ describe("Hitting several endpoints", function(){
 
             // Fetch the products for that subcategory
             var productCollection = subCategory.getProductCollection();
+            productCollection.rootUrl = "http://localhost:3000/api/";
+
             productCollection.onChange.subscribe(function(ctx){
                 // Do a sanity check to confirm that it's getting the proper JSON
                 assert.equal(ctx.data.Brand, "BestBuyCanada");
@@ -27,9 +47,11 @@ describe("Hitting several endpoints", function(){
                 // Now get the details for that specific product
                 var product = productCollection.getProductByIndex(0);
                 var productDetails = product.getProductDetails();
+                productDetails.rootUrl = "http://localhost:3000/api/";
+
                 productDetails.onChange.subscribe(function(ctx){
 
-                    // Do a sanity check to confirm that it's getting the proper JSON
+                    // Do a sanity check to confirm that it's getting the proper JSON data
                     assert.equal(typeof("name"), "string");
                     assert.equal(typeof(ctx.data.specs.length), "number");
                     assert.equal(typeof(ctx.data.specs[0].group), "string");

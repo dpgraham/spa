@@ -49,8 +49,6 @@ app.get(/^\/multimedia\/(.+)/, function(req, res){
     });
 });
 
-
-
 /**
  * Proxy through client asset requests to static assets
  */

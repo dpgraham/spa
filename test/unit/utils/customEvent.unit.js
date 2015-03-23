@@ -50,10 +50,10 @@ describe('subscribe', function(){
     });
 });
 
-describe('unsubscribe', function(){
+describe('test the unsubscribe method by', function(){
 
-    describe('subscribe and then unsubscribe', function(){
-        it('should not fire the callback', function(){
+    describe('subscribing and unsubscribing one callback', function(){
+        it('should not fire the callback when triggering', function(){
             var event = new customEvent();
             var cb = function(){
                 assert.equal(true, false, "Should not reach this function, should be unsubscribed");
@@ -64,8 +64,8 @@ describe('unsubscribe', function(){
         });
     });
 
-    describe('subscribe multiple callbacks and then unsubscribe all of them', function(){
-        it('should not fire any of the callbacks', function(){
+    describe('subscribing multiple callbacks and then unsubscribing all of them', function(){
+        it('should not fire any of the callbacks when triggering', function(){
             var event = new customEvent();
             var cb1 = function(){
                 assert.equal(true, false, "Should not reach this function, should be unsubscribed");
@@ -80,8 +80,8 @@ describe('unsubscribe', function(){
         });
     });
 
-    describe('subscribe multiple callbacks and then unsubscribe all of them', function(){
-        it('should fire only one callback', function(done){
+    describe('subscribing multiple callbacks and then unsubscribing only one of them', function(){
+        it('should only fire the one callback', function(done){
             var event = new customEvent();
             var cb1 = function(){
                 assert.equal(true, false, "Should not reach this function, should be unsubscribed");

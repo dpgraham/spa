@@ -3,7 +3,7 @@ var Indicator = require("../utils/indicator");
 var Ajax = require("simple-ajax");
 
 /**
- * Javascript model that corresponds with an API endpoint.
+ * Javascript model that corresponds with an API endpoint. Inherited by all other models.
  *
  * Similar to the Backbone Model
  *
@@ -42,9 +42,7 @@ BaseModel.prototype._getFullURL = function(){
  */
 BaseModel.prototype.sync = function(url, doneCb, errCb){
     // Perform an Ajax request
-
-    //var ajax = new Ajax(this.rootUrl + this.url);
-    var ajax = new Ajax(this._getFullURL());
+    var ajax = new Ajax(url);
     var ctx = this;
     ajax.on('success', function(evt){
         var resp = {
@@ -66,7 +64,7 @@ BaseModel.prototype.sync = function(url, doneCb, errCb){
  */
 BaseModel.prototype.fetch = function(){
     var ctx = this;
-    this.sync(this.rootUrl + this.url, function(evt){
+    this.sync(this._getFullURL(), function(evt){
         // If the data changed, update the data and then fire the change event
         if(evt.data != ctx.dataJSON) {
             ctx.dataJSON = evt.data;
