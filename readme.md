@@ -1,6 +1,8 @@
 INSTRUCTIONS
 ================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/dpgraham/spa.svg)](https://greenkeeper.io/)
+
 - Building
     - NodeJS, NPM must be installed
     - 'gulp' must be installed (npm install -g gulp)
